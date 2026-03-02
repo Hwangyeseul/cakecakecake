@@ -502,7 +502,7 @@
     font-size: 13px;
     font-weight: 900;
     cursor: pointer;
-    font-family: 'Moneygraphy_Pixel', sans-serif;
+    font-family: 'font4', sans-serif;
     letter-spacing: 0.05em;
     transition: all 0.2s;
     text-decoration: none;
@@ -524,7 +524,7 @@
   }
 
   .how-title {
-    font-family: 'font3', sans-serif;
+    font-family: 'font4', sans-serif;
     font-size: clamp(36px, 4vw, 50px);
     color: var(--cream);
     margin-bottom: 16px;
@@ -555,7 +555,7 @@
   .step:hover { background: rgba(232,131,58,0.15); }
 
   .step-num {
-    font-family: 'font2', sans-serif;
+    font-family: 'font4', sans-serif;
     font-size: 56px;
     color: var(--caramel);
     opacity: 0.4;
@@ -570,7 +570,7 @@
   }
 
   .step-title {
-    font-family: 'font3', sans-serif;
+    font-family: 'font4', sans-serif;
     font-size: 20px;
     color: var(--cream);
     margin-bottom: 8px;
@@ -797,6 +797,324 @@
 
 }
   .divider-strip .star { color: var(--caramel-light); }
+
+  /* ── 자세히보기 버튼 ── */
+  .btn-detail {
+    background: transparent;
+    color: var(--brown-mid);
+    border: 2px solid rgba(107,58,42,0.35);
+    padding: 8px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'font4', sans-serif;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .btn-detail:hover {
+    background: var(--cream-2);
+    border-color: var(--brown-mid);
+    color: var(--brown-dark);
+    transform: scale(1.04);
+  }
+  .cake-price-row { gap: 8px; flex-wrap: wrap; }
+  .cake-price-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+  }
+
+  /* ── 사진 팝업 모달 ── */
+  .photo-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 8, 4, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    animation: fadeIn 0.2s ease;
+  }
+  .photo-modal-overlay.show { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+  .photo-modal {
+    background: var(--white);
+    border: 3px solid var(--brown-dark);
+    border-radius: 28px;
+    max-width: 780px;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    animation: popUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+  }
+  @keyframes popUp {
+    from { opacity: 0; transform: scale(0.9) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .photo-modal-header {
+    background: var(--brown-dark);
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .photo-modal-title {
+    font-family: 'font4', sans-serif;
+    font-size: 17px;
+    color: var(--caramel-light);
+  }
+  .photo-modal-close {
+    background: none;
+    border: 2px solid rgba(255,248,240,0.3);
+    color: var(--cream);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    line-height: 1;
+  }
+  .photo-modal-close:hover { background: var(--caramel); border-color: var(--caramel); }
+
+  .photo-viewer {
+    position: relative;
+    background: var(--cream-2);
+    overflow: hidden;
+  }
+  .photo-main {
+    width: 100%;
+    aspect-ratio: 4/3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .photo-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: opacity 0.25s ease;
+  }
+  .photo-main img.fade { opacity: 0; }
+  .photo-placeholder {
+    font-size: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: var(--cream-2);
+    flex-direction: column;
+    gap: 12px;
+    color: var(--brown-mid);
+    font-family: 'font4', sans-serif;
+    font-size: 15px;
+  }
+  .photo-placeholder span:first-child { font-size: 80px; }
+
+  .photo-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(44,24,16,0.7);
+    color: var(--cream);
+    border: none;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 2;
+  }
+  .photo-nav-btn:hover { background: var(--caramel); }
+  .photo-nav-btn.prev { left: 14px; }
+  .photo-nav-btn.next { right: 14px; }
+
+  .photo-counter {
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(44,24,16,0.6);
+    color: var(--cream);
+    font-family: 'font4', sans-serif;
+    font-size: 13px;
+    padding: 4px 14px;
+    border-radius: 100px;
+    backdrop-filter: blur(4px);
+  }
+
+  .photo-thumbs {
+    display: flex;
+    gap: 8px;
+    padding: 14px 16px;
+    background: var(--cream);
+    border-top: 2px solid var(--brown-dark);
+    overflow-x: auto;
+  }
+  .photo-thumb {
+    width: 72px;
+    height: 72px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2.5px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.2s;
+    background: var(--cream-2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+  }
+  .photo-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .photo-thumb.active { border-color: var(--caramel); }
+
+  .photo-modal-info {
+    padding: 16px 24px 20px;
+    border-top: 1.5px solid rgba(107,58,42,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .photo-modal-cake-name {
+    font-family: 'font4', sans-serif;
+    font-size: 18px;
+    color: var(--brown-dark);
+  }
+  .photo-modal-cake-price {
+    font-family: 'font4', sans-serif;
+    font-size: 22px;
+    color: var(--caramel);
+  }
+  .event-banner {
+    background: var(--caramel);
+    border-bottom: 2px solid var(--brown-dark);
+    padding: 12px 20px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.2s;
+  }
+  .event-banner:hover { background: var(--caramel-light); }
+  .event-banner a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .event-banner-text {
+    font-family: 'font4', sans-serif;
+    font-size: 15px;
+    color: var(--white);
+    letter-spacing: 0.08em;
+    text-shadow: 1px 1px 0 rgba(44,24,16,0.25);
+  }
+  .event-banner-arrow {
+    font-size: 16px;
+    color: var(--white);
+    animation: nudge 1.2s ease-in-out infinite;
+  }
+  @keyframes nudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+  }
+  .event-banner-close {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 6px;
+    transition: color 0.2s;
+  }
+  .event-banner-close:hover { color: var(--white); }
+
+  /* ── 네비 이벤트 버튼 ── */
+  .nav-event-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    text-decoration: none;
+    background: linear-gradient(135deg, var(--caramel), #d4621e);
+    color: white;
+    font-family: 'font4', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    padding: 8px 18px;
+    border-radius: 100px;
+    border: 2px solid var(--brown-dark);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    box-shadow: 0 0 0 0 rgba(232,131,58,0.5);
+    animation: eventPulse 2s ease-in-out infinite;
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+  .nav-event-btn:hover {
+    transform: scale(1.07);
+    animation: none;
+    box-shadow: 0 4px 20px rgba(232,131,58,0.5);
+  }
+  .nav-event-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.35) 50%, transparent 70%);
+    transform: translateX(-100%);
+    animation: shimmer 2.4s ease-in-out infinite;
+  }
+  .nav-event-dot {
+    width: 7px;
+    height: 7px;
+    background: #fff;
+    border-radius: 50%;
+    flex-shrink: 0;
+    animation: blink 1s ease-in-out infinite;
+  }
+  @keyframes eventPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(232,131,58,0.55); }
+    50% { box-shadow: 0 0 0 8px rgba(232,131,58,0); }
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    60%, 100% { transform: translateX(100%); }
+  }
+  @keyframes blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
 </style>
 </head>
 <body>
@@ -822,10 +1140,16 @@
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">
-    <img src="images/logo_man.png" alt="켘켘켘 로고">
-    <span class="nav-logo-text">켘켘켘</span>
-  </a>
+  <div style="display:flex; align-items:center; gap:16px;">
+    <a class="nav-logo" href="#">
+      <img src="images/logo_man.jpg" alt="켘켘켘 로고">
+      <span class="nav-logo-text">켘켘켘</span>
+    </a>
+    <a href="event.html" class="nav-event-btn">
+      <span class="nav-event-dot"></span>
+      🎉 오픈 이벤트 CLICK 🎉
+    </a>
+  </div>
   <ul class="nav-links">
     <li><a href="#cakes">케이크</a></li>
     <li><a href="#how">주문 방법</a></li>
@@ -920,7 +1244,10 @@
               <div class="cake-price">₩35,000</div>
               <div class="cake-price-sub">1호 기준 (2~3인)</div>
             </div>
-            <a href="https://map.naver.com" target="_blank" class="btn-order-sm">주문하기</a>
+            <div class="cake-price-actions">
+              <a href="https://map.naver.com" target="_blank" class="btn-order-sm">예약하기</a>
+              <button class="btn-detail" onclick="openModal(0)">🔍 자세히보기</button>
+            </div>
           </div>
         </div>
       </div>
@@ -939,7 +1266,10 @@
               <div class="cake-price">₩9,000</div>
               <div class="cake-price-sub">대량 주문 가능</div>
             </div>
-            <a href="https://map.naver.com" target="_blank" class="btn-order-sm">주문하기</a>
+            <div class="cake-price-actions">
+              <a href="https://map.naver.com" target="_blank" class="btn-order-sm">예약하기</a>
+              <button class="btn-detail" onclick="openModal(1)">🔍 자세히보기</button>
+            </div>
           </div>
         </div>
       </div>
@@ -958,7 +1288,10 @@
               <div class="cake-price">₩9,000</div>
               <div class="cake-price-sub">대량 주문 가능</div>
             </div>
-            <a href="https://map.naver.com" target="_blank" class="btn-order-sm">주문하기</a>
+            <div class="cake-price-actions">
+              <a href="https://map.naver.com" target="_blank" class="btn-order-sm">예약하기</a>
+              <button class="btn-detail" onclick="openModal(2)">🔍 자세히보기</button>
+            </div>
           </div>
         </div>
       </div>
@@ -976,7 +1309,10 @@
               <div class="cake-price">₩45,000</div>
               <div class="cake-price-sub">1호 기준 (2~3인)</div>
             </div>
-            <a href="https://map.naver.com" target="_blank" class="btn-order-sm">주문하기</a>
+            <div class="cake-price-actions">
+              <a href="https://map.naver.com" target="_blank" class="btn-order-sm">예약하기</a>
+              <button class="btn-detail" onclick="openModal(3)">🔍 자세히보기</button>
+            </div>
           </div>
         </div>
       </div>
@@ -995,7 +1331,10 @@
               <div class="cake-price">₩50,000</div>
               <div class="cake-price-sub">1호 기준 (2~3인)</div>
             </div>
-            <a href="https://map.naver.com" target="_blank" class="btn-order-sm">주문하기</a>
+            <div class="cake-price-actions">
+              <a href="https://map.naver.com" target="_blank" class="btn-order-sm">예약하기</a>
+              <button class="btn-detail" onclick="openModal(4)">🔍 자세히보기</button>
+            </div>
           </div>
         </div>
       </div>
@@ -1014,7 +1353,10 @@
               <div class="cake-price">₩23,000~</div>
               <div class="cake-price-sub">초코펜, 딸기펜 등 추가주문 가능</div>
             </div>
-            <a href="diy.html" class="btn-order-sm">만들어보기 →</a>
+            <div class="cake-price-actions">
+              <a href="https://map.naver.com" target="_blank" class="btn-order-sm">예약하기</a>
+              <a href="diy.html" class="btn-detail">🔍 자세히보기</a>
+            </div>
           </div>
         </div>
       </div>
@@ -1059,6 +1401,7 @@
     <p class="cta-subtitle reveal">특별한 날을 더 달콤하게 🎂<br>인스타그램 DM으로 편하게 문의하세요. 빠르게 답장드릴게요!</p>
     <div class="cta-buttons reveal">
       <a href="https://map.naver.com" target="_blank" class="btn-primary" style="font-size:30px; padding:18px 44px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M13.53 12.26L8.8 5H5v14h4.47l4.73-7.26L19 19h3.5V5H18.3z"/></svg>
         네이버 예약
       </a>
       <a href="https://instagram.com/direct" target="_blank" class="btn-insta" style="font-size:30px; padding:18px 44px;">
@@ -1084,6 +1427,180 @@
     © 2026 켘켘켘 Cake Shop. All rights reserved.
   </div>
 </footer>
+
+<!-- PHOTO DETAIL MODAL -->
+<div class="photo-modal-overlay" id="photoModal">
+  <div class="photo-modal">
+    <div class="photo-modal-header">
+      <span class="photo-modal-title" id="modalTitle">케이크 상세보기</span>
+      <button class="photo-modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="photo-viewer">
+      <div class="photo-main">
+        <img id="modalMainImg" src="" alt="">
+        <button class="photo-nav-btn prev" onclick="changePhoto(-1)">‹</button>
+        <button class="photo-nav-btn next" onclick="changePhoto(1)">›</button>
+        <div class="photo-counter"><span id="photoIdx">1</span> / <span id="photoTotal">5</span></div>
+      </div>
+      <div class="photo-thumbs" id="photoThumbs"></div>
+    </div>
+    <div class="photo-modal-info">
+      <div class="photo-modal-cake-name" id="modalCakeName"></div>
+      <div class="photo-modal-cake-price" id="modalCakePrice"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ── 케이크 데이터 (이미지 파일명은 실제 파일에 맞게 수정해주세요) ──
+  const cakeData = [
+    {
+      name: '생크림 딸기 케이크',
+      price: '₩35,000~',
+      emoji: '🍓',
+      photos: [
+        'images/cake1.png',
+        'images/cake1_2.png',
+        'images/cake1_3.png',
+        'images/cake1_4.png',
+        'images/cake1_5.png',
+      ]
+    },
+    {
+      name: '캔케이크 딸기',
+      price: '₩9,000',
+      emoji: '🍓',
+      photos: [
+        'images/cake2.png',
+        'images/cake2_2.png',
+        'images/cake2_3.png',
+        'images/cake2_4.png',
+        'images/cake2_5.png',
+      ]
+    },
+    {
+      name: '캔케이크 키위',
+      price: '₩9,000',
+      emoji: '🥝',
+      photos: [
+        'images/cake3.png',
+        'images/cake3_2.png',
+        'images/cake3_3.png',
+        'images/cake3_4.png',
+        'images/cake3_5.png',
+      ]
+    },
+    {
+      name: '블루베리 생크림 케이크',
+      price: '₩45,000~',
+      emoji: '🫐',
+      photos: [
+        'images/cake4.jpg',
+        'images/cake4_2.jpg',
+        'images/cake4_3.jpg',
+        'images/cake4_4.jpg',
+        'images/cake4_5.jpg',
+      ]
+    },
+    {
+      name: '얼그레이 오렌지',
+      price: '₩50,000~',
+      emoji: '🍊',
+      photos: [
+        'images/cake5.jpg',
+        'images/cake5_2.jpg',
+        'images/cake5_3.jpg',
+        'images/cake5_4.jpg',
+        'images/cake5_5.jpg',
+      ]
+    },
+  ];
+
+  let currentCake = null;
+  let currentPhotoIdx = 0;
+
+  function openModal(idx) {
+    currentCake = cakeData[idx];
+    currentPhotoIdx = 0;
+    document.getElementById('modalTitle').textContent = currentCake.name + ' 상세보기';
+    document.getElementById('modalCakeName').textContent = currentCake.name;
+    document.getElementById('modalCakePrice').textContent = currentCake.price;
+    document.getElementById('photoTotal').textContent = currentCake.photos.length;
+    renderThumbs();
+    setMainPhoto(0);
+    document.getElementById('photoModal').classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('photoModal').classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  function renderThumbs() {
+    const container = document.getElementById('photoThumbs');
+    container.innerHTML = '';
+    currentCake.photos.forEach((src, i) => {
+      const thumb = document.createElement('div');
+      thumb.className = 'photo-thumb' + (i === 0 ? ' active' : '');
+      thumb.onclick = () => setMainPhoto(i);
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = currentCake.name + ' ' + (i+1);
+      img.onerror = () => { img.style.display='none'; thumb.textContent = currentCake.emoji; };
+      thumb.appendChild(img);
+      container.appendChild(thumb);
+    });
+  }
+
+  function setMainPhoto(idx) {
+    currentPhotoIdx = idx;
+    const mainImg = document.getElementById('modalMainImg');
+    mainImg.classList.add('fade');
+    setTimeout(() => {
+      mainImg.src = currentCake.photos[idx];
+      mainImg.alt = currentCake.name;
+      mainImg.onerror = function() {
+        this.style.display = 'none';
+        const ph = this.parentElement;
+        if (!ph.querySelector('.photo-placeholder')) {
+          const div = document.createElement('div');
+          div.className = 'photo-placeholder';
+          div.innerHTML = '<span>' + currentCake.emoji + '</span><span>이미지를 준비 중이에요 🎂</span>';
+          ph.appendChild(div);
+        }
+      };
+      mainImg.onload = () => mainImg.classList.remove('fade');
+      mainImg.classList.remove('fade');
+      document.getElementById('photoIdx').textContent = idx + 1;
+    }, 150);
+
+    // update thumbs
+    document.querySelectorAll('.photo-thumb').forEach((t, i) => {
+      t.classList.toggle('active', i === idx);
+    });
+  }
+
+  function changePhoto(dir) {
+    const total = currentCake.photos.length;
+    const next = (currentPhotoIdx + dir + total) % total;
+    setMainPhoto(next);
+  }
+
+  // Close on overlay click
+  document.getElementById('photoModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!document.getElementById('photoModal').classList.contains('show')) return;
+    if (e.key === 'Escape') closeModal();
+    if (e.key === 'ArrowLeft') changePhoto(-1);
+    if (e.key === 'ArrowRight') changePhoto(1);
+  });
+
+</script>
 
 <script>
   // Scroll reveal
